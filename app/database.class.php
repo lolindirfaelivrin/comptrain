@@ -9,7 +9,7 @@ class Database
     private string dbHandler = "";
     private string db_host = "localhost";
 
-    public __contruct(pass,user,name, host) {
+    public __contruct(user,name,pass,host) {
         $this->db_pass = pass;
         $this->db_user = user;
         $this->db_name = name;
