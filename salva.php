@@ -10,9 +10,9 @@ $connessione = new Database(DB_USER,DB_NAME,DB_PASS,DB_HOST);
 if(isset($_POST['salva'])) {
 
     $dati = [
-        "data" => $_POST['data'],
-        "titolo" => $_POST['titolo'],
-        "testo" => $_POST['testo']
+        "wodData" => $_POST['wod-data'],
+        "wodTitolo" => $_POST['wod-titolo'],
+        "wodTesto" => $_POST['wod-testo']
     ];
 
     register($data);
@@ -22,13 +22,13 @@ if(isset($_POST['salva'])) {
 
 
 function register($data) {
-    $this->connessione->query('INSERT INTO comptrain (data,titolo,testo) VALUES(:data, :titolo, :testo)');
+    $connessione->query('INSERT INTO comptrain (giorno,titolo,testo) VALUES(:giorno, :titolo, :testo)');
 
-    $this->db->bind(':data', $data['data']);
-    $this->db->bind(':titolo', $data['titolo']);
-    $this->db->bind(':testo', $data['testo']);
+    $connessione->bind(':giorno', $data['wodData']);
+    $connessione->bind(':titolo', $data['wodTitolo']);
+    $connessione->bind(':testo', $data['wodTesto']);
 
-    if ($this->connessione->executeQuery()) {
+    if ($connessione->executeQuery()) {
         return true;
     } else {
         return false;

@@ -3,17 +3,18 @@
 
 class Database  
 {
-    private string db_pass = "";
-    private string db_user = "";
-    private string db_name = "";
-    private string dbHandler = "";
-    private string db_host = "localhost";
+    private string $db_pass;
+    private string $db_user;
+    private string $db_name;
+    private string $dbHandler;
+    private string $statement;
+    private string $db_host = "localhost";
 
-    public __contruct(user,name,pass,host) {
-        $this->db_pass = pass;
-        $this->db_user = user;
-        $this->db_name = name;
-        $this->db_host = host;
+    public function __construct($user,$name,$pass,$host) {
+        $this->db_pass = $pass;
+        $this->db_user = $user;
+        $this->db_name = $name;
+        $this->db_host = $host;
 
         $this->connetti();
     }
