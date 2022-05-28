@@ -15,13 +15,15 @@ if(isset($_POST['salva'])) {
         "wodTesto" => $_POST['wod-testo']
     ];
 
-    register($data);
+    if(salvaWod($data)) {
+        header("Location: http://demonation.altervista.org/minisiti/comptrain/");
+    }
 
 }
 
 
 
-function register($data) {
+function salvaWod($data) {
     $connessione->query('INSERT INTO comptrain (giorno,titolo,testo) VALUES(:giorno, :titolo, :testo)');
 
     $connessione->bind(':giorno', $data['wodData']);
