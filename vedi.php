@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 require 'app/database.class.php';
 require 'config.php';
@@ -28,6 +28,11 @@ $dati = $connessione->resultSet($sql);
 	<h1>Comptrain</h1>
 	<a href="index.html" class="btn btn-outline">Aggiungi</a>
 </header>
+<section class="messaggio">
+    <?php if(!empty($_SESSION['messaggio'])): ?>
+        <p class="messaggio__testo messaggio__testo-successo"><?php echo $_SESSION['messaggio']; ?></p>
+    <?php endif; ?>
+</section>
 <section class="tabella">
 <table class="tabella__dati">
         <thead>
