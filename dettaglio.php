@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+require 'app/database.class.php';
+require 'config.php';
+
+$connessione = new Database(DB_USER,DB_NAME,DB_PASS,DB_HOST);
+
+
+if(isset($_GET['id'])) {
+
+    $datiWod = [
+        "wodId" => filter_var( $_GET['id'], FILTER_SANITIZE_NUMBER_INT)
+    ];
+
+    mostraSingoloWod($datiWod, $connession);
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,3 +69,16 @@
 </body>
 </html>
 
+
+<?php
+
+function mostraSingoloWod($datiWod, $database) {
+    $database->query('SELECT * FROM comptrain WHERE id=:id');
+
+    $database->bind(':id', $datiWod['wodId']);
+
+    return $database->singleRow();
+
+  }
+
+  ?>

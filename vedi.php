@@ -39,7 +39,7 @@ $dati = $connessione->resultSet($sql);
             <tr>
                 <th>Data</th>
                 <th>Titolo</th>
-                <th colspan="2">Azioni</th>
+                <th colspan="3">Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -47,8 +47,9 @@ $dati = $connessione->resultSet($sql);
                 <tr>
                     <td><?php echo $wod->giorno   ?></td>
                     <td><?php echo $wod->titolo ?></td>
-                    <td><a href="modifica.php?id=<?php echo $wod->id ?>" data-id="<?php echo $wod->id ?>">Vedi</a></td>
+                    <td><a href="modifica.php?id=<?php echo $wod->id ?>" data-id="<?php echo $wod->id ?>">Modifica</a></td>
                     <td><a href="elimina.php?id=<?php echo $wod->id ?>" data-id="<?php echo $wod->id ?>">Elimina</a></td>
+                    <td><a href="dettaglio.php?id=<?php echo $wod->id ?>" data-id="<?php echo $wod->id ?>">Dettaglio</a></td>
                 </tr>
             <?php endforeach;   ?>    
         </tbody>

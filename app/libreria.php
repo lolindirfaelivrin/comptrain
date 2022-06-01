@@ -72,7 +72,7 @@ function modificaWod($datiWod, $database) {
 function eliminaWod($datiWod, $database) {
     $database->query('DELETE FROM comptrain WHERE id = :id');
 
-    $satabase->bind(':id', $datiWod['wodId']);
+    $database->bind(':id', $datiWod['wodId']);
 
     if ($database->executeQuery()) {
         return true;
