@@ -6,13 +6,14 @@ require 'config.php';
 
 $connessione = new Database(DB_USER,DB_NAME,DB_PASS,DB_HOST);
 
-
+// ! DAFARE Pulire i campi inviati dal form
 if(isset($_POST[])) {
 
     $datiWod = [
         "wodData" => $_POST['wod-data'],
         "wodTitolo" => $_POST['wod-titolo'],
-        "wodTesto" => $_POST['wod-testo']
+        "wodTesto" => $_POST['wod-testo'],
+        "wodRiferimento" => "Vuoto"
     ];
 
     if(salvaWod($datiWod, $connessione)) {
@@ -25,15 +26,15 @@ if(isset($_POST[])) {
 }
 
 
+// ! DAFARE Aggiungi campo wod riferito ad altra data
+function salvaWod($datiWod, $database) {
+    $database->query('INSERT INTO comptrain (giorno,titolo,testo) VALUES(:giorno, :titolo, :testo)');
 
-function salvaWod($valori, $satabase) {
-    $satabase->query('INSERT INTO comptrain (giorno,titolo,testo) VALUES(:giorno, :titolo, :testo)');
+    $database->bind(':giorno', $datiWod['wodData']);
+    $database->bind(':titolo', $datiWod['wodTitolo']);
+    $database->bind(':testo', $datiWod['wodTesto']);
 
-    $satabase->bind(':giorno', $valori['wodData']);
-    $satabase->bind(':titolo', $valori['wodTitolo']);
-    $satabase->bind(':testo', $valori['wodTesto']);
-
-    if ($satabase->executeQuery()) {
+    if ($database->executeQuery()) {
         return true;
     } else {
         return false;

@@ -30,7 +30,7 @@ $dati = $connessione->resultSet($sql);
 </header>
 <section class="messaggio">
     <?php if(!empty($_SESSION['messaggio'])): ?>
-        <p class="messaggio__testo messaggio__testo-successo"><?php echo $_SESSION['messaggio']; ?></p>
+        <p class="messaggio__testo messaggio__testo-successo"><?php echo $_SESSION['messaggio'];  unset($_SESSION['messaggio']);?></p>
     <?php endif; ?>
 </section>
 <section class="tabella">
@@ -39,7 +39,7 @@ $dati = $connessione->resultSet($sql);
             <tr>
                 <th>Data</th>
                 <th>Titolo</th>
-                <th>Azioni</th>
+                <th colspan="2">Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +47,8 @@ $dati = $connessione->resultSet($sql);
                 <tr>
                     <td><?php echo $wod->giorno   ?></td>
                     <td><?php echo $wod->titolo ?></td>
-                    <td><a href="# <?php echo $wod->id ?>" data-id="<?php $wod->id ?>">Vedi</a></td>
+                    <td><a href="modifica.php?id=<?php echo $wod->id ?>" data-id="<?php echo $wod->id ?>">Vedi</a></td>
+                    <td><a href="elimina.php?id=<?php echo $wod->id ?>" data-id="<?php echo $wod->id ?>">Elimina</a></td>
                 </tr>
             <?php endforeach;   ?>    
         </tbody>
