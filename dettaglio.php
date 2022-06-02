@@ -13,7 +13,7 @@ if(isset($_GET['id'])) {
         "wodId" => filter_var( $_GET['id'], FILTER_SANITIZE_NUMBER_INT)
     ];
 
-    mostraSingoloWod($datiWod, $connession);
+    $wod = mostraSingoloWod($datiWod, $connessione);
 
 }
 
@@ -59,7 +59,7 @@ if(isset($_GET['id'])) {
 				<textarea id="wod-testo" name="wod-testo" cols="30" rows="10"></textarea>
 				<span class="nascosto" id="errore-testo">Campo </span>
 			</div>
-			<input class="btn btn-nero" type="submit" name="salva" value="salva" id="salva">
+			<input class="btn btn-nero" type="submit" name="salva" value="modifica questo wod" id="salva">
 		</form>
 	</section>
 </main>

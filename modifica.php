@@ -50,7 +50,7 @@ if(isset($_POST[])) {
 <body>
 <header>
 	<h1>Comptrain</h1>
-	<a href="index.html" class="btn btn-outline">Aggiungi</a>
+	<a href="vedi.php" class="btn btn-outline">elenco wod</a>
 </header>
 <section class="messaggio">
     <?php if(!empty($_SESSION['messaggio'])): ?>
