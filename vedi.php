@@ -2,14 +2,25 @@
 session_start();
 
 require 'app/database.class.php';
+require 'app/Paginazione.php';
 require 'config.php';
 
 
+$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
+$page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
+$links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
+
 $connessione = new Database(DB_USER,DB_NAME,DB_PASS,DB_HOST);
 
-$sql = $connessione->query("SELECT * FROM comptrain");
+//$sl = $connessione->query("SELECT * FROM comptrain");
 
-$dati = $connessione->resultSet($sql);
+$sql = "SELECT id, titolo, DATA_FORMAT(giorno, %d %m %Y) as giorno";
+
+$paginazione = new Paginazione($conenssione, $sql);
+
+//$dati = $connessione->resultSet($sql);
+
+$dati = $paginazione->getDati($links, 'paginapazione paginazione-sm paginazione-centro');
 
 ?>
 
