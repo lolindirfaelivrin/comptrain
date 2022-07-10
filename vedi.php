@@ -10,6 +10,11 @@ $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 25;
 $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
 $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 
+$ordine = "DESC";
+if(isset($_POST['ordina'])) {
+	$ordine = $_POST['direzione'];
+}
+
 $connessione = new Database(DB_USER,DB_NAME,DB_PASS,DB_HOST);
 
 //$sl = $connessione->query("SELECT * FROM comptrain");
@@ -45,6 +50,14 @@ $dati = $paginazione->getDati($links, 'paginapazione paginazione-sm paginazione-
     <?php endif; ?>
 </section>
 <section class="tabella">
+    <form action="vedi.php" method="post">
+	    <label for="ordine">Ordine</label>
+        <select id="ordine" name="direzione">
+    	    <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+        </select>
+        <input type="submit" name="ordina" value="Ordina">
+    </form>
 <table class="tabella__dati">
         <thead>
             <tr>
